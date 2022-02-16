@@ -1,0 +1,1 @@
+This folder must contain MFT.xml and VFS.xml
