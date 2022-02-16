@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><DeployerSpec exitOnError="true" sourceType="Repository">
+	<DeployerServer>
+		<host>localhost:5555</host>
+		<user>Administrator</user>
+		<pwd>{AES}Y5IgMqjfvkgbg7p5VUZztw==</pwd>
+	</DeployerServer>
+  <Environment>
+	  <MFT>
+			<mftalias name="RepoMFTTarget_Prod1">
+				<host>10.219.144.145</host>
+				<port>54111</port>
+				<user>deploy</user>
+				<pwd>{AES}Bq5Vo3RJfqUuLO+0hhhoMg==</pwd>
+				<useSSL>true</useSSL>
+				<version>10.7</version>
+				<Test>true</Test>
+			</mftalias>
+			<mftalias name="RepoMFTTarget_Prod2">
+				<host>10.219.145.181</host>
+				<port>54121</port>
+				<user>deploy</user>
+				<pwd>{AES}Bq5Vo3RJfqUuLO+0hhhoMg==</pwd>
+				<useSSL>true</useSSL>
+				<version>10.7</version>
+				<Test>true</Test>
+			</mftalias>
+		</MFT>
+		<Repository>
+			<repalias name="RepoSource_MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_PROD">
+				<type>FlatFile</type>
+				<urlOrDirectory>D:\SAG_Composites_Deploy\PROD\MKOJDE907LookupChildToCoupaUS_MFT_Event_Only</urlOrDirectory>
+				<Test>true</Test>
+			</repalias>
+		</Repository>	
+	</Environment>
+
+	<Projects projectPrefix="ESB_">
+		<Project description="MFT Event Only" ignoreMissingDependencies="true" name="MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_To_PROD" overwrite="true" type="Repository">
+
+<DeploymentSet autoResolve="full" description="" name="myDeploymentSet" srcAlias="RepoSource_MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_PROD">
+<Composite displayName="ActiveTransfer_*" name="ActiveTransfer_*" srcAlias="RepoSource_MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_PROD" type="MFT"/>
+</DeploymentSet>
+<DeploymentMap description="" name="myDeploymentMap"/>
+<MapSetMapping mapName="myDeploymentMap" setName="myDeploymentSet">
+<alias type="MFT">RepoMFTTarget_Prod1</alias>
+<alias type="MFT">RepoMFTTarget_Prod2</alias>
+</MapSetMapping>
+			<DeploymentCandidate description="" mapName="myDeploymentMap" name="myDeployment"/>
+		</Project>		
+	</Projects>
+</DeployerSpec>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><DeployerSpec exitOnError="true" sourceType="Repository">
+	<DeployerServer>
+		<host>localhost:5555</host>
+		<user>Administrator</user>
+		<pwd>{AES}Y5IgMqjfvkgbg7p5VUZztw==</pwd>
+	</DeployerServer>
+  <Environment>
+	 
+	  <MFT>
+			<mftalias name="Target_Server">
+				<host>10.225.140.00</host>
+				<port>52141</port>
+				<user>Admin</user>
+				<pwd>pass</pwd>
+				<useSSL>true</useSSL>
+				<version>10.7</version>
+				<Test>true</Test>
+			</mftalias>
+		</MFT>
+		<Repository>
+			<repalias name="RepoSource_Repo_Name_DEV">
+				<type>FlatFile</type>
+				<urlOrDirectory>D:\SAG_Composites_Deploy\DEV\Repo_Name</urlOrDirectory>
+				<Test>true</Test>
+			</repalias>
+		</Repository>	
+	</Environment>
+
+	<Projects projectPrefix="ESB_">
+		<Project description="IS Event Only" ignoreMissingDependencies="true" name="Repo_Name_To_DEV" overwrite="true" type="Repository">
+
+<DeploymentSet autoResolve="full" description="" name="myDeploymentSet" srcAlias="RepoSource_Repo_Name_DEV">
+<Composite displayName="ActiveTransfer_*" name="ActiveTransfer_*" srcAlias="RepoSource_Repo_Name_DEV" type="MFT"/>
+
+</DeploymentSet>
+<DeploymentMap description="" name="myDeploymentMap"/>
+<MapSetMapping mapName="myDeploymentMap" setName="myDeploymentSet">
+
+<alias type="MFT">Target_Server</alias>
+</MapSetMapping>
+			<DeploymentCandidate description="" mapName="myDeploymentMap" name="myDeployment"/>
+		</Project>		
+	</Projects>
+</DeployerSpec>

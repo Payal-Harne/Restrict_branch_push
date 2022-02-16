@@ -1,0 +1,1 @@
+This folder must contain IS  input, output and error mgs xml

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><DeployerSpec exitOnError="true" sourceType="Repository">
+	<DeployerServer>
+		<host>localhost:5555</host>
+		<user>Administrator</user>
+		<pwd>{AES}Y5IgMqjfvkgbg7p5VUZztw==</pwd>
+	</DeployerServer>
+  <Environment>
+	  <MFT>
+			<mftalias name="RepoMFTTarget_QA1">
+				<host>10.219.140.119</host>
+				<port>53111</port>
+				<user>deploy</user>
+				<pwd>{AES}Bq5Vo3RJfqUuLO+0hhhoMg==</pwd>
+				<useSSL>true</useSSL>
+				<version>10.3</version>
+				<Test>true</Test>
+			</mftalias>
+			<mftalias name="RepoMFTTarget_QA2">
+				<host>10.219.141.54</host>
+				<port>53121</port>
+				<user>deploy</user>
+				<pwd>{AES}Bq5Vo3RJfqUuLO+0hhhoMg==</pwd>
+				<useSSL>true</useSSL>
+				<version>10.3</version>
+				<Test>true</Test>
+			</mftalias>
+		</MFT>
+		<Repository>
+			<repalias name="RepoSource_MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_QA">
+				<type>FlatFile</type>
+				<urlOrDirectory>D:\SAG_Composites_Deploy\QA\MKOJDE907LookupChildToCoupaUS_MFT_Event_Only</urlOrDirectory>
+				<Test>true</Test>
+			</repalias>
+		</Repository>	
+	</Environment>
+
+	<Projects projectPrefix="ESB_">
+		<Project description="MFT Event Only" ignoreMissingDependencies="true" name="MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_To_QA" overwrite="true" type="Repository">
+
+<DeploymentSet autoResolve="full" description="" name="myDeploymentSet" srcAlias="RepoSource_MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_QA">
+<Composite displayName="ActiveTransfer_*" name="ActiveTransfer_*" srcAlias="RepoSource_MKOJDE907LookupChildToCoupaUS_MFT_Event_Only_QA" type="MFT"/>
+</DeploymentSet>
+<DeploymentMap description="" name="myDeploymentMap"/>
+<MapSetMapping mapName="myDeploymentMap" setName="myDeploymentSet">
+<alias type="MFT">RepoMFTTarget_QA1</alias>
+<alias type="MFT">RepoMFTTarget_QA2</alias>
+</MapSetMapping>
+			<DeploymentCandidate description="" mapName="myDeploymentMap" name="myDeployment"/>
+		</Project>		
+	</Projects>
+</DeployerSpec>
